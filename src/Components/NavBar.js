@@ -48,15 +48,16 @@ const Dropdown = () => {
 };
 
 const NavBar = () => {
+	const [listOpen, setListOpen] = react.useState(false);
 	return (
 		<ul>
-			<li>Projects</li>
+			<li onClick={()=>setListOpen(!listOpen)}>Projects</li>
 			<div>
-				<Dropdown />
+				{listOpen?<Dropdown />:null}
 			</div>
-			<li>Blog</li>
-			<li>Skills</li>
-			<li>Story</li>
+			<li onClick={()=>setListOpen(false)}>Blog</li>
+			<li onClick={()=>setListOpen(false)}>Skills</li>
+			<li onClick={()=>setListOpen(false)}>Story</li>
 		</ul>
 	);
 };
