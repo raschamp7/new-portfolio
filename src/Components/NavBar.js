@@ -1,7 +1,6 @@
 import React, * as react from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
+import { NavLink, Link } from 'react-router-dom';
 
 const Dropdown = () => {
 	return (
@@ -51,13 +50,17 @@ const NavBar = () => {
 	const [listOpen, setListOpen] = react.useState(false);
 	return (
 		<ul>
-			<li onClick={()=>setListOpen(!listOpen)}>Projects</li>
-			<div>
-				{listOpen?<Dropdown />:null}
-			</div>
-			<li onClick={()=>setListOpen(false)}>Blog</li>
-			<li onClick={()=>setListOpen(false)}>Skills</li>
-			<li onClick={()=>setListOpen(false)}>Story</li>
+			<li onClick={() => setListOpen(!listOpen)}>Projects</li>
+			<div>{listOpen ? <Dropdown /> : null}</div>
+			<li onClick={() => setListOpen(false)}>
+				<Link to="/blog">Blog</Link>
+			</li>
+			<li onClick={() => setListOpen(false)}>
+				<Link to="/skills">Skills</Link>
+			</li>
+			<li onClick={() => setListOpen(false)}>
+				<Link to="/story">Story</Link>
+			</li>
 		</ul>
 	);
 };
