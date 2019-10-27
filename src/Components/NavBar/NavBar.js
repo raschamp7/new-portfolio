@@ -59,13 +59,13 @@ const NavBar = () => {
 	};
 
 	return (
-		<div className="navbar">
-			<Grid xs={12} sm={12} md={4} lg={4}>
+		<Grid container className="navbar">
+			<Grid item xs={12} sm={12} md={4} lg={4}>
 				<Link to="/">
 					<img className="logo" src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" />
 				</Link>
 			</Grid>
-			<Grid xs={12} sm={12} md={8} lg={8}></Grid>
+			<Grid item xs={12} sm={12} md={8} lg={8}></Grid>
 			<ul>
 				<li onClick={() => setListOpen(!listOpen)}>Projects</li>
 				<li onClick={() => setListOpen(false)}>
@@ -79,7 +79,7 @@ const NavBar = () => {
 				</li>
 			</ul>
 			<div className="dropdown">{listOpen ? <Dropdown callbackFromParent={myCallback} /> : null}</div>
-		</div>
+		</Grid>
 	);
 };
 export default NavBar;
