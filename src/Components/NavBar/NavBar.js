@@ -3,12 +3,32 @@ import { Grid, ListItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './NavBar.style.css';
 
-const Dropdown = () => {
+const Dropdown = ({ callbackFromParent }) => {
+	const node = react.useRef();
+	const handleClick = (e) => {
+		if (node.current.contains(e.target)) {
+			// inside click
+			callbackFromParent(true);
+			return;
+		}
+		// outside click
+		callbackFromParent(false);
+	};
+
+	react.useEffect(() => {
+		document.addEventListener('mousedown', handleClick);
+		return () => {
+			document.removeEventListener('mousedown', handleClick);
+		};
+	}, []);
+
 	return (
-		<Grid container>
+		<Grid container ref={node}>
 			<Grid item xs={12} sm={4} md={4}>
 				<h4>Web Dev</h4>
-				<ListItem>D3 World Map</ListItem>
+				<ListItem onClick={() => callbackFromParent(false)}>
+					<Link to="/d3-world-map">D3 World Map</Link>
+				</ListItem>
 				<ListItem>Keppler</ListItem>
 				<ListItem>P5.js</ListItem>
 				<ListItem>Gatsby</ListItem>
@@ -33,14 +53,19 @@ const Dropdown = () => {
 
 const NavBar = () => {
 	const [listOpen, setListOpen] = react.useState(false);
+
+	const myCallback = (listOpen) => {
+		setListOpen(listOpen);
+	};
+
 	return (
-		<div className="navbar">
-			<Grid xs={12} sm={12} md={4} lg={4}>
+		<Grid container className="navbar">
+			<Grid item xs={12} sm={12} md={4} lg={4}>
 				<Link to="/">
 					<img className="logo" src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" />
 				</Link>
 			</Grid>
-			<Grid xs={12} sm={12} md={8} lg={8}></Grid>
+			<Grid item xs={12} sm={12} md={8} lg={8}></Grid>
 			<ul>
 				<li onClick={() => setListOpen(!listOpen)}>Projects</li>
 				<li onClick={() => setListOpen(false)}>
@@ -53,8 +78,8 @@ const NavBar = () => {
 					<Link to="/story">Story</Link>
 				</li>
 			</ul>
-			<div className="dropdown">{listOpen ? <Dropdown /> : null}</div>
-		</div>
+			<div className="dropdown">{listOpen ? <Dropdown callbackFromParent={myCallback} /> : null}</div>
+		</Grid>
 	);
 };
 export default NavBar;
