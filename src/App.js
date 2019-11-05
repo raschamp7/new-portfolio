@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Blog from './components/Blog';
-import Skills from './components/Skills';
-import Story from './components/Story';
-import D3WorldMap from './components/D3WorldMap';
-import NavBar from './components/NavBar';
+import Home from './Components/Home';
+import Blog from './Components/Blog';
+import Skills from './Components/Skills';
+import Story from './Components/Story';
+import D3WorldMap from './Components/D3WorldMap';
+import NavBar from './Components/NavBar';
 import './App.css';
 
 function App() {
