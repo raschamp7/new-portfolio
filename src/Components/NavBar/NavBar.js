@@ -37,7 +37,7 @@ const Dropdown = ({ callbackFromParent }) => {
 			<Grid item xs={12} sm={4} md={4}>
 				<h4>Data Science</h4>
 				<ListItem onClick={() => callbackFromParent(false)}>
-					<Link to="/tensorflow-js">TensorflowJS</Link>
+					<Link to="/tensorflowjs">TensorflowJS</Link>
 				</ListItem>
 				<ListItem>Data mining</ListItem>
 				<ListItem>Big Data and AI</ListItem>

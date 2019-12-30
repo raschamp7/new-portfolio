@@ -7,3 +7,5 @@ const TensorflowJS = () => {
 		</div>
 	);
 };
+
+export default TensorflowJS;
