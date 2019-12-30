@@ -5,7 +5,7 @@ import './NavBar.style.css';
 
 const Dropdown = ({ callbackFromParent }) => {
 	const node = react.useRef();
-	const handleClick = (e) => {
+	const handleClick = e => {
 		if (node.current.contains(e.target)) {
 			// inside click
 			callbackFromParent(true);
@@ -36,6 +36,9 @@ const Dropdown = ({ callbackFromParent }) => {
 			</Grid>
 			<Grid item xs={12} sm={4} md={4}>
 				<h4>Data Science</h4>
+				<ListItem onClick={() => callbackFromParent(false)}>
+					<Link to="/tensorflowjs">TensorflowJS</Link>
+				</ListItem>
 				<ListItem>Data mining</ListItem>
 				<ListItem>Big Data and AI</ListItem>
 				<ListItem>Django web app</ListItem>
@@ -54,7 +57,7 @@ const Dropdown = ({ callbackFromParent }) => {
 const NavBar = () => {
 	const [listOpen, setListOpen] = react.useState(false);
 
-	const myCallback = (listOpen) => {
+	const myCallback = listOpen => {
 		setListOpen(listOpen);
 	};
 
@@ -65,7 +68,7 @@ const NavBar = () => {
 					<img className="logo" src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" />
 				</Link>
 			</Grid>
-			<Grid item xs={12} sm={12} md={8} lg={8}></Grid>
+			<Grid item xs={12} sm={12} md={8} lg={8} />
 			<ul>
 				<li onClick={() => setListOpen(!listOpen)}>Projects</li>
 				<li onClick={() => setListOpen(false)}>
